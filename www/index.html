@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>২৮টি সুন্দর ডিজাইন - পার্সোনাল স্টুডিও</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI','Poppins',system-ui,sans-serif}
+body{background:linear-gradient(145deg,#0b1120,#1a1f35);min-height:100vh;padding:24px 16px;display:flex;flex-direction:column;align-items:center}
+.main{max-width:1400px;width:100%}
+.header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;background:rgba(20,30,55,.75);padding:18px 28px;border-radius:48px;border:1px solid rgba(120,160,255,.25);margin-bottom:28px}
+.logo-area{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo-preview{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#2a3f6e,#121b30);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(150,190,255,.5);overflow:hidden;cursor:pointer;font-size:28px}
+.logo-preview img{width:100%;height:100%;object-fit:cover}
+.upload{background:rgba(60,100,200,.2);padding:10px 18px;border-radius:40px;border:1px solid rgba(120,170,255,.4);color:#b8cdff;font-size:15px;cursor:pointer}
+#logoInput{display:none}
+.title-badge{font-size:22px;font-weight:700;background:linear-gradient(135deg,#fff,#c0d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 24px;border-radius:40px;font-weight:600;font-size:15px;cursor:pointer;background:rgba(255,255,255,.08);color:#e0eaff;border:1px solid rgba(130,170,255,.3)}
+.btn-primary{background:linear-gradient(135deg,#3b6eff,#7a4aff);border:none;color:#fff}
+.btn:disabled{opacity:.6}
+.grid{display:grid;grid-template-columns:1fr 1.2fr;gap:28px}
+@media(max-width:850px){.grid{grid-template-columns:1fr}}
+.panel{background:rgba(18,26,45,.8);padding:28px 24px;border-radius:36px;border:1px solid rgba(90,140,255,.2)}
+.preview-panel{display:flex;flex-direction:column;gap:16px;padding:24px 20px}
+.field{margin-bottom:22px}
+.field label{display:block;color:#b0c6ff;font-size:14px;margin-bottom:8px}
+.field input,.field textarea{width:100%;padding:14px 18px;border-radius:24px;border:1px solid #2a3a5e;background:#0e1527;color:#f0f4ff;font-size:16px;outline:none;font-family:inherit}
+.styles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;max-height:420px;overflow-y:auto}
+.opt{background:#101a30;border:1.5px solid #263a60;border-radius:20px;padding:14px 8px;text-align:center;color:#b8cdff;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px}
+.opt .sw{width:42px;height:42px;border-radius:14px}
+.opt.active{border-color:#6d9aff;background:#1d2b4a}
+.badge{background:#1e2e4e;padding:4px 12px;border-radius:30px;font-size:13px;color:#8db0ff}
+.card{display:flex;align-items:center;min-height:320px;width:100%;border-radius:32px;padding:34px 30px;overflow:hidden}
+.row{display:flex;align-items:center;gap:22px;width:100%}
+.clogo{flex-shrink:0;width:64px;height:64px;border-radius:50%;border:2.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden}
+.clogo img{width:100%;height:100%;object-fit:cover}
+.ctext{display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+.ctitle{font-size:24px;font-weight:700;line-height:1.3;word-break:break-word}
+.cdesc{font-size:15px;opacity:.88;line-height:1.55;word-break:break-word}
+.foot{margin-top:30px;color:#6e86b0;font-size:14px;text-align:center;border-top:1px solid #1f2b47;padding-top:22px}
+@media(max-width:500px){.clogo{width:54px;height:54px}.ctitle{font-size:20px}.cdesc{font-size:14px}.header{border-radius:32px}}
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="logo-area">
+      <div class="logo-preview" id="logoPreview">🖼️</div>
+      <label for="logoInput" class="upload">📁 লোগো আপলোড</label>
+      <input type="file" id="logoInput" accept="image/*">
+      <div class="title-badge">🎨 ২৮টি ডিজাইন</div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="resetBtn">🔄 রিসেট</button>
+      <button class="btn btn-primary" id="downloadBtn">⬇️ ছবি সেভ করুন</button>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="field"><label>📝 টাইটেল / নাম</label>
+        <input type="text" id="titleInput" value="জেড স্টুডিও"></div>
+      <div class="field"><label>📄 বিবরণ</label>
+        <textarea id="descInput" rows="3">প্রিমিয়াম কোয়ালিটি ডিজাইন কালেকশন</textarea></div>
+      <div class="field"><label>🎯 ডিজাইন স্টাইল <span class="badge">২৮টি</span></label>
+        <div class="styles" id="styles"></div></div>
+    </div>
+    <div class="panel preview-panel">
+      <div style="color:#a0b8f0;font-size:14px;display:flex;justify-content:space-between">
+        <span>🔍 লাইভ প্রিভিউ</span><span id="styleName"></span></div>
+      <div class="card" id="card"><div class="row" id="row"></div></div>
+      <div style="color:#7b94c0;font-size:13px;text-align:center">ফোনে বাটনে চাপলে শেয়ার মেনু আসবে, সেখান থেকে "Save Image" চাপুন</div>
+    </div>
+  </div>
+  <div class="foot">✦ পার্সোনাল ব্যবহারের জন্য ফ্রি ✦ ২৮টি ডিজাইন ✦ গ্যালারিতে সেভ ✦</div>
+</div>
+
+<script>
+(function(){
+// [নাম, ব্যাকগ্রাউন্ড, টাইটেল রঙ, বিবরণ রঙ, বর্ডার, শ্যাডো, অ্যাকসেন্ট]
+const D=[
+['নিয়ন গ্লো','linear-gradient(145deg,#0b0f1c,#16213e)','#9efff0','#a0d0ff','1px solid #3df0ff','0 0 30px #00e0ff55','#00e0ff'],
+['সানসেট','linear-gradient(135deg,#ff7e5f,#feb47b)','#2d1b0e','#3d2a1a','1px solid #ffb347','0 10px 30px #ff7e5f88','#fff0d0'],
+['ডার্ক রয়্যাল','linear-gradient(145deg,#1a1a2e,#16213e,#0f3460)','#e2c9ff','#b8b8ff','1px solid #6a4c9c','0 20px 35px #0f0f1f','#9b6bff'],
+['গ্লাসমরফিজম','linear-gradient(145deg,#2b3a55,#1e2b40)','#ffffff','#d0e0ff','2px solid rgba(255,255,255,0.25)','0 25px 40px -10px #00000099','#aaccff'],
+['মিনিমাল লাইট','#f8faff','#1f2b4a','#3e506e','1px solid #d0dfff','0 15px 30px -10px #a0b8e0','#4a6cff'],
+['মিডনাইট পার্পল','linear-gradient(135deg,#240b36,#3a1c5c)','#e0c3ff','#c7a8ff','1px solid #a36eff','0 0 40px #9b4dff55','#c084fc'],
+['ওশান ডিপ','linear-gradient(145deg,#032b44,#0a4b6e,#0f6b8f)','#c1f0ff','#a0dcff','1px solid #2eb0e0','0 20px 35px #021e2e','#5ad0ff'],
+['ফরেস্ট গ্রিন','linear-gradient(145deg,#0b2e1f,#1b4d2e)','#d0ffd0','#b0e0b0','1px solid #3b9e5a','0 15px 30px #0a1f14','#80d090'],
+['রেট্রো ওয়েভ','linear-gradient(135deg,#f9d423,#f83600)','#2a1a0a','#3a2a1a','2px solid #ffcc00','0 20px 35px #f8360060','#fff5c0'],
+['সাইবারপাঙ্ক','linear-gradient(135deg,#0d0221,#1a0b2e)','#ff4dd0','#b0f0ff','2px solid #ff00c8','0 0 35px #ff00c899','#00ffe0'],
+['পেস্টেল ড্রিম','linear-gradient(145deg,#fdeff2,#f8e8ff)','#6a3b6a','#8b5e8b','1px solid #e0b0ff','0 15px 25px -5px #d8b0e0','#c084fc'],
+['গোল্ডেন আওয়ার','linear-gradient(145deg,#1f1c18,#2e2a22)','#ffd966','#e0c080','1px solid #b8860b','0 0 35px #ffaa0044','#ffcc66'],
+['ব্লু টেক','linear-gradient(145deg,#0a1a2f,#113355)','#8ac4ff','#b0d4ff','1px solid #3a7bd5','0 20px 35px #001a33','#5aa0ff'],
+['সফট পিচ','linear-gradient(135deg,#ffdde1,#ee9ca7)','#4a1e2e','#5e2e3e','1px solid #ff8a9f','0 15px 30px #ffb6c180','#ff6b81'],
+['নাইট স্কাই','linear-gradient(145deg,#0b1020,#131b33)','#ffd966','#b0c4ff','1px solid #ffd96655','0 25px 35px #010101','#ffe066'],
+['মিন্ট ফ্রেশ','linear-gradient(145deg,#e0fff0,#b0f0d0)','#004d2e','#1e6b4a','1px solid #50c090','0 15px 30px #80d0b0','#00a86b'],
+['ভিনটেজ পেপার','#f5e6d3','#4a2e1e','#6e4e3a','2px solid #b09070','0 15px 30px #b0907055','#a07050'],
+['এলিক্সির','linear-gradient(145deg,#1e0b2e,#2e1b4e)','#d4b0ff','#b89eff','1px solid #a06eff','0 0 35px #8a4aff66','#b07aff'],
+['সানফ্লাওয়ার','linear-gradient(145deg,#fff5c0,#ffe680)','#5a4a0a','#7a6a1a','2px solid #d4a017','0 20px 30px #ffcc0080','#e6b800'],
+['ডিপ স্পেস','linear-gradient(145deg,#000,#0a0a1a,#0f0f2a)','#aaccff','#88aaff','1px solid #4466aa','0 0 40px #2244aa66','#6688dd'],
+['রোজ গোল্ড','linear-gradient(145deg,#2e1a1a,#3e2a2a)','#ffb8b8','#e0a0a0','1px solid #c08080','0 0 30px #b0606055','#d09090'],
+['ট্রপিকাল','linear-gradient(145deg,#006a4e,#00a86b)','#ffffcc','#d0ffcc','1px solid #80e0a0','0 20px 35px #004d33','#c0ffb0'],
+['ল্যাভেন্ডার','linear-gradient(145deg,#e6e0ff,#d0c0ff)','#3a2a6a','#5e4a8a','1px solid #b0a0e0','0 15px 30px #c0b0e0','#8a6aff'],
+['কার্বন ফাইবার','repeating-linear-gradient(45deg,#1a1a1a,#1a1a1a 4px,#2a2a2a 4px,#2a2a2a 8px)','#e0e0e0','#b0b0b0','1px solid #505050','0 20px 35px black','#a0a0a0'],
+['পিঙ্ক','linear-gradient(145deg,#ffe0f0,#ffb0d0)','#6a1a4a','#8a2a5a','1px solid #ff80b0','0 15px 30px #ffb0d080','#ff4d94'],
+['আর্কটিক','linear-gradient(145deg,#e0f0ff,#c0dfff)','#1a3a6a','#2a4a7a','1px solid #80aaff','0 15px 30px #a0c0e0','#4a8aff'],
+['ডেজার্ট স্টর্ম','linear-gradient(145deg,#d4a373,#b5835a)','#2e1e0e','#4a2e1a','1px solid #e0b080','0 20px 30px #8a6030','#ffe0b0'],
+['এমারেল্ড','linear-gradient(145deg,#004d2e,#006b3e)','#c0ffd0','#a0e0b0','1px solid #40b070','0 0 35px #00a86b66','#80e0a0']
+].map(a=>({name:a[0],bg:a[1],t:a[2],d:a[3],border:a[4],shadow:a[5],acc:a[6]}));
+
+const $=id=>document.getElementById(id);
+const styles=$('styles'),card=$('card'),row=$('row'),titleIn=$('titleInput'),descIn=$('descInput'),
+logoIn=$('logoInput'),logoPrev=$('logoPreview'),dlBtn=$('downloadBtn'),resetBtn=$('resetBtn'),styleName=$('styleName');
+let cur=0,logo=null;
+
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+function renderOptions(){
+  styles.innerHTML='';
+  D.forEach((d,i)=>{
+    const o=document.createElement('div');
+    o.className='opt'+(i===cur?' active':'');
+    o.innerHTML='<div class="sw" style="background:'+d.bg+';border:1px solid '+d.acc+'55"></div><span>'+d.name+'</span>';
+    o.onclick=()=>{cur=i;document.querySelectorAll('.opt').forEach(e=>e.classList.remove('active'));o.classList.add('active');update()};
+    styles.appendChild(o);
+  });
+}
+
+function update(){
+  const d=D[cur];
+  const title=titleIn.value.trim()||'শিরোনাম';
+  const desc=descIn.value.trim()||'বিবরণ এখানে...';
+  card.style.background=d.bg;card.style.border=d.border;card.style.boxShadow=d.shadow;
+  styleName.textContent=d.name;styleName.style.color='#b0ccff';
+  const lg=logo?'<div class="clogo"><img src="'+logo+'"></div>'
+    :'<div class="clogo" style="background:'+d.acc+'22;border-color:'+d.acc+'66;color:'+d.t+'">✨</div>';
+  row.innerHTML=lg+'<div class="ctext"><div class="ctitle" style="color:'+d.t+'">'+esc(title)+'</div><div class="cdesc" style="color:'+d.d+'">'+esc(desc).replace(/\n/g,'<br>')+'</div></div>';
+}
+
+logoIn.onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{logo=ev.target.result;logoPrev.innerHTML='<img src="'+logo+'">';update()};
+  r.readAsDataURL(f);
+};
+logoPrev.onclick=()=>logoIn.click();
+
+function loadScript(src){
+  return new Promise((ok,fail)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>fail(new Error('ইন্টারনেট সংযোগ চেক করুন'));document.head.appendChild(s)});
+}
+
+async function save(){
+  const old=dlBtn.textContent;
+  dlBtn.disabled=true;dlBtn.textContent='⏳ তৈরি হচ্ছে...';
+  try{
+    if(typeof html2canvas==='undefined')
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    const canvas=await html2canvas(card,{scale:2,backgroundColor:null,useCORS:true,logging:false});
+    const blob=await new Promise(r=>canvas.toBlob(r,'image/png'));
+    const name='design-'+(cur+1)+'.png';
+    const file=new File([blob],name,{type:'image/png'});
+    const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    // ফোন: শেয়ার মেনু (Save Image / গ্যালারি)
+    if(mobile&&navigator.canShare&&navigator.canShare({files:[file]})){
+      try{await navigator.share({files:[file],title:'ডিজাইন'});return}
+      catch(e){if(e.name==='AbortError')return}
+    }
+    // কম্পিউটার বা ফলব্যাক: সাধারণ ডাউনলোড
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+  }catch(err){
+    alert('সমস্যা হয়েছে: '+err.message);
+  }finally{
+    dlBtn.disabled=false;dlBtn.textContent=old;
+  }
+}
+
+function reset(){
+  titleIn.value='জেড স্টুডিও';descIn.value='প্রিমিয়াম কোয়ালিটি ডিজাইন কালেকশন';
+  logo=null;logoPrev.innerHTML='🖼️';logoIn.value='';cur=0;
+  renderOptions();update();
+}
+
+titleIn.oninput=update;descIn.oninput=update;
+dlBtn.onclick=save;resetBtn.onclick=reset;
+renderOptions();update();
+})();
+</script>
+</body>
+</html>
