@@ -1,0 +1,55 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Create Cordova project
+        run: |
+          cordova create app com.fastithum.app "Fasti Thum"
+          cp config.xml app/config.xml
+          rm -rf app/www
+          cp -r www app/www
+
+      - name: Add Android platform
+        working-directory: app
+        run: cordova platform add android
+
+      - name: Build APK
+        working-directory: app
+        run: cordova build android
+
+      - name: Find APK
+        id: findapk
+        run: |
+          APK_PATH=$(find "$GITHUB_WORKSPACE" -name "*.apk" | head -n 1)
+          echo "Found APK at: $APK_PATH"
+          echo "apk_path=$APK_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: fasti-thum-apk
+          path: ${{ steps.findapk.outputs.apk_path }}
+          if-no-files-found: warn
